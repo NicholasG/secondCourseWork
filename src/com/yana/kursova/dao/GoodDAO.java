@@ -29,15 +29,6 @@ public class GoodDAO {
         }
     }
 
-    public void deleteGood( int id ) throws SQLException {
-        try ( Connection connection = DataAccessUtil.createConnection() ) {
-            PreparedStatement statement = connection.prepareStatement( getDeleteQuery() );
-
-            statement.setInt( 1, id );
-            statement.executeUpdate();
-        }
-    }
-
     public void updateGood( Good good ) throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement( getUpdateQuery() );
@@ -51,10 +42,20 @@ public class GoodDAO {
             statement.setInt( 7, good.getAmount() );
             statement.setString( 8, good.getColor() );
             statement.setString( 9, good.getSpecifications() );
+            statement.setInt( 10, good.getId() );
 
             statement.executeUpdate();
         }
 
+    }
+
+    public void deleteGood( int id ) throws SQLException {
+        try ( Connection connection = DataAccessUtil.createConnection() ) {
+            PreparedStatement statement = connection.prepareStatement( getDeleteQuery() );
+
+            statement.setInt( 1, id );
+            statement.executeUpdate();
+        }
     }
 
     public List<Good> findAll() throws SQLException {
