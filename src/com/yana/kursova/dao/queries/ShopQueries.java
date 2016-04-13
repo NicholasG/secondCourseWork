@@ -36,4 +36,5 @@ public final class ShopQueries {
     public static String getSelectAllByNameQuery() {
         return SELECT_ALL_BY_NAME_QUERY;
     }
+
 }

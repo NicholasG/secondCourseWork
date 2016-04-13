@@ -13,6 +13,9 @@ public final class GoodQueries {
     private static final String SELECT_ALL_QUERY = "SELECT * FROM good";
     private static final String SELECT_ONE_BY_ID_QUERY = "SELECT * FROM good WHERE id = ?";
     private static final String SELECT_ALL_BY_NAME_QUERY = "SELECT * FROM good WHERE UPPER(name) LIKE UPPER(?)";
+    private static final String SELECT_ALL_GOODS_BY_SHOP_ID = "SELECT good_id FROM good_has_shop WHERE shop_id = ?";
+    private static final String DELETE_GOOD_FROM_SHOP_QUERY = "DELETE FROM good_has_shop " +
+            "WHERE shop_id = ? AND good_id = ?";
 
     public static String getSelectAllByNameQuery() {
         return SELECT_ALL_BY_NAME_QUERY;
@@ -36,6 +39,14 @@ public final class GoodQueries {
 
     public static String getSelectAllQuery() {
         return SELECT_ALL_QUERY;
+    }
+
+    public static String getSelectAllGoodsByShopId() {
+        return SELECT_ALL_GOODS_BY_SHOP_ID;
+    }
+
+    public static String getDeleteGoodFromShopQuery() {
+        return DELETE_GOOD_FROM_SHOP_QUERY;
     }
 
 }

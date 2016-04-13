@@ -4,6 +4,7 @@
 
 package com.yana.kursova.gui;
 
+import java.awt.event.*;
 import com.yana.kursova.dao.ShopDAO;
 import com.yana.kursova.domain.Shop;
 
@@ -16,6 +17,14 @@ public class MainView extends JFrame {
 
     public MainView() {
         initComponents();
+
+    }
+
+    private void tableShopMouseClicked(MouseEvent e) {
+        if ( e.getClickCount() == 2 ) {
+            Goods goods = new Goods( this, tableShop.getSelectedRow() );
+            goods.setVisible( true );
+        }
     }
 
     private void initComponents() {
@@ -24,9 +33,6 @@ public class MainView extends JFrame {
         menuBar = new JMenuBar();
         menu1 = new JMenu();
         menuItem1 = new JMenuItem();
-        buttonAdd = new JButton();
-        buttonEdit = new JButton();
-        buttonDelete = new JButton();
         scrollPane = new JScrollPane();
         tableShop = new JTable(getShopsTableModel());
         toolBar = new JToolBar();
@@ -56,15 +62,6 @@ public class MainView extends JFrame {
         }
         setJMenuBar(menuBar);
 
-        //---- buttonAdd ----
-        buttonAdd.setText("Add");
-
-        //---- buttonEdit ----
-        buttonEdit.setText("Edit");
-
-        //---- buttonDelete ----
-        buttonDelete.setText("Delete");
-
         //======== scrollPane ========
         {
             scrollPane.setBackground(Color.white);
@@ -72,6 +69,12 @@ public class MainView extends JFrame {
             //---- tableShop ----
             tableShop.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             tableShop.setRowHeight(20);
+            tableShop.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    tableShopMouseClicked(e);
+                }
+            });
             scrollPane.setViewportView(tableShop);
         }
 
@@ -85,16 +88,12 @@ public class MainView extends JFrame {
             //---- buttonAddTB ----
             buttonAddTB.setToolTipText("Add a new shop");
             buttonAddTB.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/add.png")));
-            buttonAddTB.setMaximumSize(new Dimension(25, 25));
-            buttonAddTB.setPreferredSize(new Dimension(25, 25));
             buttonAddTB.setAlignmentY(0.0F);
             buttonAddTB.setBorderPainted(false);
             buttonAddTB.setBackground(Color.white);
             toolBar.add(buttonAddTB);
 
             //---- buttonDeleteTB ----
-            buttonDeleteTB.setMaximumSize(new Dimension(25, 25));
-            buttonDeleteTB.setPreferredSize(new Dimension(25, 25));
             buttonDeleteTB.setBorderPainted(false);
             buttonDeleteTB.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/delete.png")));
             buttonDeleteTB.setBackground(Color.white);
@@ -105,10 +104,8 @@ public class MainView extends JFrame {
             //---- buttonEditTB ----
             buttonEditTB.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/edit.png")));
             buttonEditTB.setAlignmentY(0.0F);
-            buttonEditTB.setPreferredSize(new Dimension(25, 25));
             buttonEditTB.setBorderPainted(false);
             buttonEditTB.setBackground(Color.white);
-            buttonEditTB.setMaximumSize(new Dimension(30, 25));
             buttonEditTB.setToolTipText("Edit a shop");
             toolBar.add(buttonEditTB);
 
@@ -116,8 +113,6 @@ public class MainView extends JFrame {
             buttonPrintTB.setSelectedIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/print.png")));
             buttonPrintTB.setAlignmentY(0.0F);
             buttonPrintTB.setBorderPainted(false);
-            buttonPrintTB.setMaximumSize(new Dimension(25, 25));
-            buttonPrintTB.setPreferredSize(new Dimension(25, 25));
             buttonPrintTB.setToolTipText("Print table");
             buttonPrintTB.setBackground(Color.white);
             buttonPrintTB.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/print.png")));
@@ -129,32 +124,14 @@ public class MainView extends JFrame {
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addComponent(toolBar, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)
-                            .addContainerGap())
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(buttonAdd, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(buttonEdit, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(buttonDelete, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 636, Short.MAX_VALUE))))
+                .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
                     .addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(buttonDelete)
-                        .addComponent(buttonAdd)
-                        .addComponent(buttonEdit))
-                    .addContainerGap())
+                    .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -178,9 +155,6 @@ public class MainView extends JFrame {
     private JMenuBar menuBar;
     private JMenu menu1;
     private JMenuItem menuItem1;
-    private JButton buttonAdd;
-    private JButton buttonEdit;
-    private JButton buttonDelete;
     private JScrollPane scrollPane;
     private JTable tableShop;
     private JToolBar toolBar;

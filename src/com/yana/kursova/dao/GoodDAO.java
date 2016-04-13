@@ -94,6 +94,41 @@ public class GoodDAO {
         }
     }
 
+    public List<Good> findAllGoodsByShopId( int shopId ) throws SQLException {
+        try ( Connection connection = DataAccessUtil.createConnection() ) {
+            //region Пошук всіх індексів товарів, які знаходяться в магазині з індексом @shopId
+            PreparedStatement statement = connection.prepareStatement( getSelectAllGoodsByShopId() );
+            statement.setInt( 1, shopId );
+
+            ResultSet rs = statement.executeQuery();
+            List<Integer> var1 = new ArrayList<>();
+            while ( rs.next() ) var1.add( rs.getInt( 1 ) );
+            //endregion
+
+            //region Витягування всіх товарів по індексах
+            List<Good> result = new ArrayList<>();
+            var1.stream().forEach( id -> {
+                try {
+                    result.add( findById( id ) );
+                } catch ( SQLException e ) {
+                    e.printStackTrace();
+                }
+            } );
+            //endregion
+            return result;
+        }
+    }
+
+    public void deleteGoodFromShop( int shopId, int goodId ) throws SQLException {
+        try (Connection connection = DataAccessUtil.createConnection()) {
+            PreparedStatement statement = connection.prepareStatement( getDeleteGoodFromShopQuery() );
+            statement.setInt( 1, shopId );
+            statement.setInt( 2, goodId );
+
+            statement.executeUpdate();
+        }
+    }
+
     private Good getGoodFromRow( ResultSet rs ) throws SQLException {
         Good g = new Good();
         g.setId( rs.getInt( 1 ) );

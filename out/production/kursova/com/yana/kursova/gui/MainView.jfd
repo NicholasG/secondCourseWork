@@ -13,11 +13,11 @@
        <class>org.jdesktop.layout.GroupLayout</class>
        <void method="setProperty">
         <string>$horizontalGroup</string>
-        <string>par l {comp toolBar::t::954:x, seq l {space :::p, par l {seq {comp scrollPane::::942:x, space :::p}, seq {comp buttonAdd:::p:100:p, space :::p, comp buttonEdit:::p:100:p, space :::p, comp buttonDelete:::p:100:p, space :0:636:x}}}}</string>
+        <string>par l {comp toolBar::t::954:x, comp scrollPane::l::954:x}</string>
        </void>
        <void method="setProperty">
         <string>$verticalGroup</string>
-        <string>par l {seq t {comp toolBar:::p::p, space :::p, comp scrollPane::::394:x, space :::p, par b {comp buttonDelete::b:p::p, comp buttonAdd::b:p::p, comp buttonEdit::b:p::p}, space :::p}}</string>
+        <string>par l {seq t {comp toolBar:::p::p, space :::p, comp scrollPane::::436:x}}</string>
        </void>
       </object>
       <void method="setProperty">
@@ -35,42 +35,6 @@
         <int>255</int>
         <int>255</int>
         <int>255</int>
-       </object>
-      </void>
-      <void method="add">
-       <object class="com.jformdesigner.model.FormComponent">
-        <string>javax.swing.JButton</string>
-        <void method="setProperty">
-         <string>text</string>
-         <string>Add</string>
-        </void>
-        <void property="name">
-         <string>buttonAdd</string>
-        </void>
-       </object>
-      </void>
-      <void method="add">
-       <object class="com.jformdesigner.model.FormComponent">
-        <string>javax.swing.JButton</string>
-        <void method="setProperty">
-         <string>text</string>
-         <string>Edit</string>
-        </void>
-        <void property="name">
-         <string>buttonEdit</string>
-        </void>
-       </object>
-      </void>
-      <void method="add">
-       <object class="com.jformdesigner.model.FormComponent">
-        <string>javax.swing.JButton</string>
-        <void method="setProperty">
-         <string>text</string>
-         <string>Delete</string>
-        </void>
-        <void property="name">
-         <string>buttonDelete</string>
-        </void>
        </object>
       </void>
       <void method="add">
@@ -104,6 +68,14 @@
           </void>
           <void property="name">
            <string>tableShop</string>
+          </void>
+          <void method="addEvent">
+           <object class="com.jformdesigner.model.FormEvent">
+            <string>java.awt.event.MouseListener</string>
+            <string>mouseClicked</string>
+            <string>tableShopMouseClicked</string>
+            <boolean>true</boolean>
+           </object>
           </void>
          </object>
         </void>
@@ -154,20 +126,6 @@
            </object>
           </void>
           <void method="setProperty">
-           <string>maximumSize</string>
-           <object class="java.awt.Dimension">
-            <int>25</int>
-            <int>25</int>
-           </object>
-          </void>
-          <void method="setProperty">
-           <string>preferredSize</string>
-           <object class="java.awt.Dimension">
-            <int>25</int>
-            <int>25</int>
-           </object>
-          </void>
-          <void method="setProperty">
            <string>alignmentY</string>
            <float>0.0</float>
           </void>
@@ -192,20 +150,6 @@
         <void method="add">
          <object class="com.jformdesigner.model.FormComponent">
           <string>javax.swing.JButton</string>
-          <void method="setProperty">
-           <string>maximumSize</string>
-           <object class="java.awt.Dimension">
-            <int>25</int>
-            <int>25</int>
-           </object>
-          </void>
-          <void method="setProperty">
-           <string>preferredSize</string>
-           <object class="java.awt.Dimension">
-            <int>25</int>
-            <int>25</int>
-           </object>
-          </void>
           <void method="setProperty">
            <string>borderPainted</string>
            <boolean>false</boolean>
@@ -254,13 +198,6 @@
            <float>0.0</float>
           </void>
           <void method="setProperty">
-           <string>preferredSize</string>
-           <object class="java.awt.Dimension">
-            <int>25</int>
-            <int>25</int>
-           </object>
-          </void>
-          <void method="setProperty">
            <string>borderPainted</string>
            <boolean>false</boolean>
           </void>
@@ -271,13 +208,6 @@
             <int>255</int>
             <int>255</int>
             <int>255</int>
-           </object>
-          </void>
-          <void method="setProperty">
-           <string>maximumSize</string>
-           <object class="java.awt.Dimension">
-            <int>30</int>
-            <int>25</int>
            </object>
           </void>
           <void method="setProperty">
@@ -306,20 +236,6 @@
           <void method="setProperty">
            <string>borderPainted</string>
            <boolean>false</boolean>
-          </void>
-          <void method="setProperty">
-           <string>maximumSize</string>
-           <object class="java.awt.Dimension">
-            <int>25</int>
-            <int>25</int>
-           </object>
-          </void>
-          <void method="setProperty">
-           <string>preferredSize</string>
-           <object class="java.awt.Dimension">
-            <int>25</int>
-            <int>25</int>
-           </object>
           </void>
           <void method="setProperty">
            <string>toolTipText</string>
