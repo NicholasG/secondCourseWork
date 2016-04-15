@@ -13,10 +13,12 @@ import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import static com.yana.kursova.gui.GoodsTableModel.getGoodsTableModel;
+
 public class Goods extends JDialog {
 
-    private int shopId;
-    private GoodsTableModel tableModel;
+    public static int shopId;
+    public static GoodsTableModel tableModel;
 
     public Goods( Frame owner ) {
         super( owner );
@@ -40,7 +42,7 @@ public class Goods extends JDialog {
     }
 
     private void buttonAddActionPerformed( ActionEvent e ) {
-        AddNewGood newGood = new AddNewGood( this );
+        AddNewGood newGood = new AddNewGood( this, tableModel );
         newGood.setVisible( true );
     }
 
@@ -48,7 +50,7 @@ public class Goods extends JDialog {
         try {
             int id = Integer.parseInt( String.valueOf( table.getValueAt( table.getSelectedRow(), 0 ) ) );
             Good good = new GoodDAO().findById( id );
-            AddNewGood newGood = new AddNewGood( this, good );
+            AddNewGood newGood = new AddNewGood( this, good, tableModel );
             newGood.setVisible( true );
         } catch ( SQLException e1 ) {
             e1.printStackTrace();
@@ -171,37 +173,13 @@ public class Goods extends JDialog {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
-    private GoodsTableModel getGoodsTableModel() {
-        try {
-            GoodDAO dao = new GoodDAO();
-            final java.util.List<Good> goods = dao.findAll();
-            return new GoodsTableModel( goods );
-        } catch ( Exception e ) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog( this, "Couldn't initialize table of goods: " + e.getMessage() );
-        }
-        return new GoodsTableModel( new ArrayList<>() );
-    }
-
-    private GoodsTableModel getGoodsTableModel( int shopId ) {
-        try {
-            GoodDAO dao = new GoodDAO();
-            final java.util.List<Good> goods = dao.findAllGoodsByShopId( shopId );
-            return new GoodsTableModel( goods );
-        } catch ( Exception e ) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog( this, "Couldn't initialize table of goods: " + e.getMessage() );
-        }
-        return new GoodsTableModel( new ArrayList<>() );
-    }
-
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Nicholas G
     private JMenuBar menuBar1;
     private JMenu menu1;
     private JMenuItem menuItem2;
     private JScrollPane scrollPane1;
-    private JTable table;
+    public static JTable table;
     private JToolBar toolBar1;
     private JButton buttonAdd;
     private JButton buttonDelete;

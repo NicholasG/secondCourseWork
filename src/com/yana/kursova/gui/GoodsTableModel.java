@@ -1,8 +1,11 @@
 package com.yana.kursova.gui;
 
+import com.yana.kursova.dao.GoodDAO;
 import com.yana.kursova.domain.Good;
 
+import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,18 +23,46 @@ public class GoodsTableModel extends AbstractTableModel {
         this.goods = goods;
     }
 
+    public static GoodsTableModel getGoodsTableModel( int shopId ) {
+        try {
+            GoodDAO dao = new GoodDAO();
+            java.util.List<Good> goods = dao.findAllGoodsByShopId( shopId );
+            return new GoodsTableModel( goods );
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return new GoodsTableModel( new ArrayList<>() );
+    }
+
+    public static GoodsTableModel getGoodsTableModel() {
+        try {
+            GoodDAO dao = new GoodDAO();
+            final java.util.List<Good> goods = dao.findAll();
+            return new GoodsTableModel( goods );
+        } catch ( Exception e ) {
+            e.printStackTrace();
+//            JOptionPane.showMessageDialog( this, "Couldn't initialize table of goods: " + e.getMessage() );
+        }
+        return new GoodsTableModel( new ArrayList<>() );
+    }
+
     public void addGood( Good good ) {
         goods.add( good );
         fireTableRowsInserted( 0, goods.size() );
     }
 
-    public Good getGoodFromRow( int rowIndex ) {
-        return goods.get( rowIndex );
+    public void updateGood( Good good ) {
+        goods.add( good );
+        fireTableRowsUpdated( 0, goods.size() );
     }
 
     public void removeRow( int rowIndex ) {
         goods.remove( rowIndex );
         fireTableRowsDeleted( rowIndex, rowIndex );
+    }
+
+    public Good getGoodFromRow( int rowIndex ) {
+        return goods.get( rowIndex );
     }
 
     public void refreshTable() {
