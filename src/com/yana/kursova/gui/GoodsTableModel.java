@@ -41,7 +41,7 @@ public class GoodsTableModel extends AbstractTableModel {
             return new GoodsTableModel( goods );
         } catch ( Exception e ) {
             e.printStackTrace();
-//            JOptionPane.showMessageDialog( this, "Couldn't initialize table of goods: " + e.getMessage() );
+            JOptionPane.showMessageDialog( null, "Couldn't initialize table of goods: " + e.getMessage() );
         }
         return new GoodsTableModel( new ArrayList<>() );
     }

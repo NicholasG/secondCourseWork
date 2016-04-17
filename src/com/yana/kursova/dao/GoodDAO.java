@@ -94,6 +94,20 @@ public class GoodDAO {
         }
     }
 
+    public int insertGoodIntoShop( int goodId, int shopId ) throws SQLException {
+        try ( Connection connection = DataAccessUtil.createConnection() ) {
+            PreparedStatement statement = connection.prepareStatement(
+                    getInsertGoodIntoShopQuery(), Statement.RETURN_GENERATED_KEYS );
+
+            statement.setInt( 1, goodId );
+            statement.setInt( 2, shopId );
+
+            statement.executeUpdate();
+            return DataAccessUtil.getNewRowKey( statement );
+        }
+
+    }
+
     public List<Good> findAllGoodsByShopId( int shopId ) throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             //region Пошук всіх індексів товарів, які знаходяться в магазині з індексом @shopId
@@ -120,7 +134,7 @@ public class GoodDAO {
     }
 
     public void deleteGoodFromShop( int shopId, int goodId ) throws SQLException {
-        try (Connection connection = DataAccessUtil.createConnection()) {
+        try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement( getDeleteGoodFromShopQuery() );
             statement.setInt( 1, shopId );
             statement.setInt( 2, goodId );

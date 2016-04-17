@@ -4,6 +4,7 @@
 
 package com.yana.kursova.gui;
 
+import java.awt.event.*;
 import com.yana.kursova.dao.GoodDAO;
 import com.yana.kursova.domain.Good;
 
@@ -42,19 +43,23 @@ public class Goods extends JDialog {
     }
 
     private void buttonAddActionPerformed( ActionEvent e ) {
-        AddNewGood newGood = new AddNewGood( this, tableModel );
+        AddNewGood newGood = new AddNewGood( this );
         newGood.setVisible( true );
     }
 
     private void buttonEditActionPerformed( ActionEvent e ) {
         try {
-            int id = Integer.parseInt( String.valueOf( table.getValueAt( table.getSelectedRow(), 0 ) ) );
-            Good good = new GoodDAO().findById( id );
-            AddNewGood newGood = new AddNewGood( this, good, tableModel );
-            newGood.setVisible( true );
+            openEditForm();
         } catch ( SQLException e1 ) {
             e1.printStackTrace();
         }
+    }
+
+    private void openEditForm() throws SQLException {
+        int id = Integer.parseInt( String.valueOf( table.getValueAt( table.getSelectedRow(), 0 ) ) );
+        Good good = new GoodDAO().findById( id );
+        AddNewGood newGood = new AddNewGood( this, good );
+        newGood.setVisible( true );
     }
 
     private void buttonDeleteActionPerformed( ActionEvent e ) {
@@ -86,90 +91,90 @@ public class Goods extends JDialog {
         buttonPrint = new JButton();
 
         //======== this ========
-        setBackground( Color.white );
-        setTitle( "GOODS" );
+        setBackground(Color.white);
+        setTitle("GOODS");
         Container contentPane = getContentPane();
-        contentPane.setLayout( null );
+        contentPane.setLayout(null);
 
         //======== menuBar1 ========
         {
 
             //======== menu1 ========
             {
-                menu1.setText( "text" );
+                menu1.setText("text");
 
                 //---- menuItem2 ----
-                menuItem2.setText( "text" );
-                menu1.add( menuItem2 );
+                menuItem2.setText("text");
+                menu1.add(menuItem2);
             }
-            menuBar1.add( menu1 );
+            menuBar1.add(menu1);
         }
-        setJMenuBar( menuBar1 );
+        setJMenuBar(menuBar1);
 
         //======== scrollPane1 ========
         {
 
             //---- table ----
-            table.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
-            scrollPane1.setViewportView( table );
+            table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            scrollPane1.setViewportView(table);
         }
-        contentPane.add( scrollPane1 );
-        scrollPane1.setBounds( 0, 40, 950, 405 );
+        contentPane.add(scrollPane1);
+        scrollPane1.setBounds(0, 40, 950, 405);
 
         //======== toolBar1 ========
         {
-            toolBar1.setFloatable( false );
-            toolBar1.setBackground( Color.white );
+            toolBar1.setFloatable(false);
+            toolBar1.setBackground(Color.white);
 
             //---- buttonAdd ----
-            buttonAdd.setIcon( new ImageIcon( getClass().getResource( "/com/yana/kursova/gui/icons/add.png" ) ) );
-            buttonAdd.setToolTipText( "Add a new good" );
-            buttonAdd.setBorderPainted( false );
-            buttonAdd.setBackground( Color.white );
-            buttonAdd.addActionListener( e -> buttonAddActionPerformed( e ) );
-            toolBar1.add( buttonAdd );
+            buttonAdd.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/add.png")));
+            buttonAdd.setToolTipText("Add a new good");
+            buttonAdd.setBorderPainted(false);
+            buttonAdd.setBackground(Color.white);
+            buttonAdd.addActionListener(e -> buttonAddActionPerformed(e));
+            toolBar1.add(buttonAdd);
 
             //---- buttonDelete ----
-            buttonDelete.setIcon( new ImageIcon( getClass().getResource( "/com/yana/kursova/gui/icons/delete.png" ) ) );
-            buttonDelete.setToolTipText( "Remove" );
-            buttonDelete.setBorderPainted( false );
-            buttonDelete.setBackground( Color.white );
-            buttonDelete.addActionListener( e -> buttonDeleteActionPerformed( e ) );
-            toolBar1.add( buttonDelete );
+            buttonDelete.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/delete.png")));
+            buttonDelete.setToolTipText("Remove");
+            buttonDelete.setBorderPainted(false);
+            buttonDelete.setBackground(Color.white);
+            buttonDelete.addActionListener(e -> buttonDeleteActionPerformed(e));
+            toolBar1.add(buttonDelete);
 
             //---- buttonEdit ----
-            buttonEdit.setIcon( new ImageIcon( getClass().getResource( "/com/yana/kursova/gui/icons/edit.png" ) ) );
-            buttonEdit.setToolTipText( "Edit" );
-            buttonEdit.setBorderPainted( false );
-            buttonEdit.setBackground( Color.white );
-            buttonEdit.addActionListener( e -> buttonEditActionPerformed( e ) );
-            toolBar1.add( buttonEdit );
+            buttonEdit.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/edit.png")));
+            buttonEdit.setToolTipText("Edit");
+            buttonEdit.setBorderPainted(false);
+            buttonEdit.setBackground(Color.white);
+            buttonEdit.addActionListener(e -> buttonEditActionPerformed(e));
+            toolBar1.add(buttonEdit);
 
             //---- buttonPrint ----
-            buttonPrint.setIcon( new ImageIcon( getClass().getResource( "/com/yana/kursova/gui/icons/print.png" ) ) );
-            buttonPrint.setToolTipText( "Print table" );
-            buttonPrint.setBorderPainted( false );
-            buttonPrint.setBackground( Color.white );
-            toolBar1.add( buttonPrint );
+            buttonPrint.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/print.png")));
+            buttonPrint.setToolTipText("Print table");
+            buttonPrint.setBorderPainted(false);
+            buttonPrint.setBackground(Color.white);
+            toolBar1.add(buttonPrint);
         }
-        contentPane.add( toolBar1 );
-        toolBar1.setBounds( 0, 0, 950, toolBar1.getPreferredSize().height );
+        contentPane.add(toolBar1);
+        toolBar1.setBounds(0, 0, 950, toolBar1.getPreferredSize().height);
 
         { // compute preferred size
             Dimension preferredSize = new Dimension();
-            for ( int i = 0; i < contentPane.getComponentCount(); i++ ) {
-                Rectangle bounds = contentPane.getComponent( i ).getBounds();
-                preferredSize.width = Math.max( bounds.x + bounds.width, preferredSize.width );
-                preferredSize.height = Math.max( bounds.y + bounds.height, preferredSize.height );
+            for(int i = 0; i < contentPane.getComponentCount(); i++) {
+                Rectangle bounds = contentPane.getComponent(i).getBounds();
+                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
             }
             Insets insets = contentPane.getInsets();
             preferredSize.width += insets.right;
             preferredSize.height += insets.bottom;
-            contentPane.setMinimumSize( preferredSize );
-            contentPane.setPreferredSize( preferredSize );
+            contentPane.setMinimumSize(preferredSize);
+            contentPane.setPreferredSize(preferredSize);
         }
         pack();
-        setLocationRelativeTo( getOwner() );
+        setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -179,7 +184,7 @@ public class Goods extends JDialog {
     private JMenu menu1;
     private JMenuItem menuItem2;
     private JScrollPane scrollPane1;
-    public static JTable table;
+    public JTable table;
     private JToolBar toolBar1;
     private JButton buttonAdd;
     private JButton buttonDelete;

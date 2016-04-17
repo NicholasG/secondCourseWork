@@ -22,7 +22,7 @@ public class MainView extends JFrame {
 
     private void tableShopMouseClicked(MouseEvent e) {
         if ( e.getClickCount() == 2 ) {
-            Goods goods = new Goods( this, tableShop.getSelectedRow() );
+            Goods goods = new Goods( this, tableShop.getSelectedRow() + 1 );
             goods.setVisible( true );
         }
     }

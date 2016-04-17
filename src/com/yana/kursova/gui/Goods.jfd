@@ -14,6 +14,7 @@ new FormModel {
 					"selectionMode": 0
 					auxiliary() {
 						"JavaCodeGenerator.variableName": "table"
+						"JavaCodeGenerator.variableModifiers": 1
 					}
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
