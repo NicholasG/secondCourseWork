@@ -11,7 +11,9 @@ import com.yana.kursova.domain.Good;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.print.PrinterException;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 
 import static com.yana.kursova.gui.GoodsTableModel.getGoodsTableModel;
@@ -79,6 +81,16 @@ public class Goods extends JDialog {
 
     private void textFieldSearchKeyPressed(KeyEvent e) {
         tableModel.search( textFieldSearch.getText() );
+    }
+
+    private void buttonPrintActionPerformed(ActionEvent e) {
+        MessageFormat headerFormat = new MessageFormat( "Сторінка {0}" );
+        MessageFormat footerFormat = new MessageFormat( "- {0} -" );
+        try {
+            table.print( JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat );
+        } catch ( PrinterException e1 ) {
+            e1.printStackTrace();
+        }
     }
 
     private void initComponents() {
@@ -165,6 +177,7 @@ public class Goods extends JDialog {
             buttonPrint.setToolTipText("Print table");
             buttonPrint.setBorderPainted(false);
             buttonPrint.setBackground(Color.white);
+            buttonPrint.addActionListener(e -> buttonPrintActionPerformed(e));
             toolBar1.add(buttonPrint);
 
             //---- label1 ----

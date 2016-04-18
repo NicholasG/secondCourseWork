@@ -11,7 +11,9 @@ import com.yana.kursova.domain.Shop;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
+import java.awt.print.PrinterException;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +61,16 @@ public class MainView extends JFrame {
             new ShopDAO().deleteShop( shop.getId() );
             tableModel.removeRow( selectedRow );
         } catch ( SQLException e1 ) {
+            e1.printStackTrace();
+        }
+    }
+
+    private void buttonPrintTBActionPerformed(ActionEvent e) {
+        MessageFormat headerFormat = new MessageFormat( "Сторінка {0}" );
+        MessageFormat footerFormat = new MessageFormat( "- {0} -" );
+        try {
+            tableShop.print( JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat );
+        } catch ( PrinterException e1 ) {
             e1.printStackTrace();
         }
     }
@@ -159,6 +171,7 @@ public class MainView extends JFrame {
             buttonPrintTB.setToolTipText("Print table");
             buttonPrintTB.setBackground(Color.white);
             buttonPrintTB.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/print.png")));
+            buttonPrintTB.addActionListener(e -> buttonPrintTBActionPerformed(e));
             toolBar.add(buttonPrintTB);
 
             //---- label1 ----

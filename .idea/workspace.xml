@@ -68,35 +68,20 @@
             <file leaf-file-name="Goods.jfd" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/Goods.jfd">
                 <provider selected="true" editor-type-id="JFormDesigner">
-                  <state propertiesWidth="492" />
+                  <state propertiesWidth="167" />
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="Goods.java" pinned="false" current-in-tab="false">
+            <file leaf-file-name="Goods.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/Goods.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="652">
-                    <caret line="214" column="31" selection-start-line="214" selection-start-column="31" selection-end-line="214" selection-end-column="31" />
+                  <state relative-caret-position="737">
+                    <caret line="227" column="18" selection-start-line="227" selection-start-column="18" selection-end-line="227" selection-end-column="18" />
                     <folding>
                       <element signature="imports" expanded="true" />
                       <element signature="method#initComponents#0;class#Goods#0" expanded="false" />
-                      <marker date="1461011843963" expanded="true" signature="2562:7642" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
-                      <marker date="1461011843963" expanded="true" signature="7654:8261" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="AddNewGood.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewGood.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="686">
-                    <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-                    <folding>
-                      <element signature="method#initializeTextFields#0;class#AddNewGood#0" expanded="false" />
-                      <element signature="method#initComponents#0;class#AddNewGood#0" expanded="false" />
-                      <marker date="1461002418062" expanded="true" signature="3053:7568" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
-                      <marker date="1461002418062" expanded="false" signature="7580:8545" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
+                      <marker date="1461017243794" expanded="true" signature="3028:8187" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
+                      <marker date="1461017243794" expanded="true" signature="8199:8806" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
                     </folding>
                   </state>
                 </provider>
@@ -116,17 +101,19 @@
       <file leaf-file-name="MainView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/MainView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="205" column="48" selection-start-line="205" selection-start-column="48" selection-end-line="205" selection-end-column="48" />
+            <state relative-caret-position="113">
+              <caret line="69" column="68" selection-start-line="69" selection-start-column="68" selection-end-line="69" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2082#2169#0" expanded="false" />
-                <element signature="e#3643#3644#0" expanded="true" />
-                <element signature="e#3707#3708#0" expanded="true" />
-                <element signature="e#6777#6778#0" expanded="true" />
-                <element signature="e#6845#6846#0" expanded="true" />
-                <marker date="1461013029591" expanded="true" signature="2082:8033" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
-                <marker date="1461013029591" expanded="true" signature="8510:9126" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
+                <element signature="method#initComponents#0;class#MainView#0" expanded="false" />
+                <element signature="e#2554#2641#0" expanded="false" />
+                <element signature="e#4115#4116#0" expanded="true" />
+                <element signature="e#4179#4180#0" expanded="true" />
+                <element signature="e#7332#7333#0" expanded="true" />
+                <element signature="e#7400#7401#0" expanded="true" />
+                <element signature="method#getShopsTableModel#0;class#MainView#0" expanded="false" />
+                <marker date="1461016827560" expanded="true" signature="2554:8588" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
+                <marker date="1461016827560" expanded="true" signature="9065:9681" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
               </folding>
             </state>
           </provider>
@@ -135,8 +122,8 @@
       <file leaf-file-name="AddNewShop.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewShop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-119">
-              <caret line="43" column="56" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
+            <state relative-caret-position="-202">
+              <caret line="60" column="68" selection-start-line="60" selection-start-column="68" selection-end-line="60" selection-end-column="68" />
               <folding>
                 <marker date="1461014549807" expanded="false" signature="2559:5796" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
                 <marker date="1461014549807" expanded="false" signature="5808:6494" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
@@ -145,7 +132,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GoodsTableModel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GoodsTableModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/GoodsTableModel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="462">
@@ -183,6 +170,21 @@
             <state relative-caret-position="428">
               <caret line="114" column="42" selection-start-line="114" selection-start-column="42" selection-end-line="114" selection-end-column="42" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddNewGood.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewGood.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="58" column="83" selection-start-line="58" selection-start-column="83" selection-end-line="58" selection-end-column="83" />
+              <folding>
+                <element signature="method#initializeTextFields#0;class#AddNewGood#0" expanded="false" />
+                <element signature="method#initComponents#0;class#AddNewGood#0" expanded="false" />
+                <marker date="1461002418062" expanded="true" signature="3053:7568" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
+                <marker date="1461002418062" expanded="false" signature="7580:8545" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -226,15 +228,15 @@
         <option value="$PROJECT_DIR$/src/com/yana/kursova/dao/GoodDAO.java" />
         <option value="dbtable:/e4376ab9/fedf037c-c684-49a5-8a7f-98cb7595cf54/mydb.good_has_shop" />
         <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewGood.java" />
-        <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/Goods.jfd" />
-        <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/MainView.jfd" />
-        <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/Goods.java" />
         <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewShop.jfd" />
-        <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/MainView.java" />
         <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewShop.java" />
         <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/ShopsTableModel.java" />
         <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/GoodsTableModel.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/MainView.jfd" />
+        <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/MainView.java" />
+        <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/Goods.jfd" />
+        <option value="$PROJECT_DIR$/src/com/yana/kursova/gui/Goods.java" />
       </list>
     </option>
   </component>
@@ -888,12 +890,12 @@
       <workItem from="1460895714020" duration="10010000" />
       <workItem from="1460974531429" duration="33000" />
       <workItem from="1455802521718" duration="655000" />
-      <workItem from="1455817061932" duration="16743000" />
+      <workItem from="1455817061932" duration="18423000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80433000" />
+    <option name="totallyTimeSpent" value="82113000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
@@ -912,7 +914,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18835099" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16187595" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16187595" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -986,20 +988,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/dao/GoodDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1479">
-          <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/MainView.jfd">
       <provider selected="true" editor-type-id="JFormDesigner">
         <state paletteWidth="0" propertiesWidth="0" />
@@ -1011,13 +999,15 @@
           <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2082#2169#0" expanded="false" />
-            <element signature="e#3643#3644#0" expanded="true" />
-            <element signature="e#3707#3708#0" expanded="true" />
-            <element signature="e#6777#6778#0" expanded="true" />
-            <element signature="e#6845#6846#0" expanded="true" />
-            <marker date="1461013029591" expanded="true" signature="2082:8033" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
-            <marker date="1461013029591" expanded="true" signature="8510:9126" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
+            <element signature="method#initComponents#0;class#MainView#0" expanded="false" />
+            <element signature="e#2554#2641#0" expanded="false" />
+            <element signature="e#4115#4116#0" expanded="true" />
+            <element signature="e#4179#4180#0" expanded="true" />
+            <element signature="e#7332#7333#0" expanded="true" />
+            <element signature="e#7400#7401#0" expanded="true" />
+            <element signature="method#getShopsTableModel#0;class#MainView#0" expanded="false" />
+            <marker date="1461016827560" expanded="true" signature="2554:8588" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
+            <marker date="1461016827560" expanded="true" signature="9065:9681" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
           </folding>
         </state>
       </provider>
@@ -1054,13 +1044,15 @@
           <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2082#2169#0" expanded="false" />
-            <element signature="e#3643#3644#0" expanded="true" />
-            <element signature="e#3707#3708#0" expanded="true" />
-            <element signature="e#6777#6778#0" expanded="true" />
-            <element signature="e#6845#6846#0" expanded="true" />
-            <marker date="1461013029591" expanded="true" signature="2082:8033" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
-            <marker date="1461013029591" expanded="true" signature="8510:9126" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
+            <element signature="method#initComponents#0;class#MainView#0" expanded="false" />
+            <element signature="e#2554#2641#0" expanded="false" />
+            <element signature="e#4115#4116#0" expanded="true" />
+            <element signature="e#4179#4180#0" expanded="true" />
+            <element signature="e#7332#7333#0" expanded="true" />
+            <element signature="e#7400#7401#0" expanded="true" />
+            <element signature="method#getShopsTableModel#0;class#MainView#0" expanded="false" />
+            <marker date="1461016827560" expanded="true" signature="2554:8588" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
+            <marker date="1461016827560" expanded="true" signature="9065:9681" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
           </folding>
         </state>
       </provider>
@@ -1230,11 +1222,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/MainView.jfd">
-      <provider selected="true" editor-type-id="JFormDesigner">
-        <state propertiesWidth="152" />
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/javax/swing/JOptionPane.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="478">
@@ -1243,27 +1230,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/Goods.jfd">
-      <provider selected="true" editor-type-id="JFormDesigner">
-        <state propertiesWidth="492" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewGood.jfd">
       <provider selected="true" editor-type-id="JFormDesigner">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/Goods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="652">
-          <caret line="214" column="31" selection-start-line="214" selection-start-column="31" selection-end-line="214" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#initComponents#0;class#Goods#0" expanded="false" />
-            <marker date="1461011843963" expanded="true" signature="2562:7642" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
-            <marker date="1461011843963" expanded="true" signature="7654:8261" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewShop.jfd">
@@ -1281,47 +1250,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/MainView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="205" column="48" selection-start-line="205" selection-start-column="48" selection-end-line="205" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2082#2169#0" expanded="false" />
-            <element signature="e#3643#3644#0" expanded="true" />
-            <element signature="e#3707#3708#0" expanded="true" />
-            <element signature="e#6777#6778#0" expanded="true" />
-            <element signature="e#6845#6846#0" expanded="true" />
-            <marker date="1461013029591" expanded="true" signature="2082:8033" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
-            <marker date="1461013029591" expanded="true" signature="8510:9126" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewGood.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-          <folding>
-            <element signature="method#initializeTextFields#0;class#AddNewGood#0" expanded="false" />
-            <element signature="method#initComponents#0;class#AddNewGood#0" expanded="false" />
-            <marker date="1461002418062" expanded="true" signature="3053:7568" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
-            <marker date="1461002418062" expanded="false" signature="7580:8545" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewShop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="43" column="56" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
-          <folding>
-            <marker date="1461014549807" expanded="false" signature="2559:5796" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
-            <marker date="1461014549807" expanded="false" signature="5808:6494" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1391,6 +1319,88 @@
             <element signature="e#2907#2941#0" expanded="false" />
             <element signature="e#3129#3170#0" expanded="false" />
             <element signature="method#getValueAt#0;class#GoodsTableModel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/MainView.jfd">
+      <provider selected="true" editor-type-id="JFormDesigner">
+        <state propertiesWidth="152" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewShop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-202">
+          <caret line="60" column="68" selection-start-line="60" selection-start-column="68" selection-end-line="60" selection-end-column="68" />
+          <folding>
+            <marker date="1461014549807" expanded="false" signature="2559:5796" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
+            <marker date="1461014549807" expanded="false" signature="5808:6494" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/lang/NumberFormatException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/text/MessageFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="1426" column="50" selection-start-line="1426" selection-start-column="50" selection-end-line="1426" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/Goods.jfd">
+      <provider selected="true" editor-type-id="JFormDesigner">
+        <state propertiesWidth="167" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/MainView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="69" column="68" selection-start-line="69" selection-start-column="68" selection-end-line="69" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#initComponents#0;class#MainView#0" expanded="false" />
+            <element signature="e#2554#2641#0" expanded="false" />
+            <element signature="e#4115#4116#0" expanded="true" />
+            <element signature="e#4179#4180#0" expanded="true" />
+            <element signature="e#7332#7333#0" expanded="true" />
+            <element signature="e#7400#7401#0" expanded="true" />
+            <element signature="method#getShopsTableModel#0;class#MainView#0" expanded="false" />
+            <marker date="1461016827560" expanded="true" signature="2554:8588" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
+            <marker date="1461016827560" expanded="true" signature="9065:9681" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/Goods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="737">
+          <caret line="227" column="18" selection-start-line="227" selection-start-column="18" selection-end-line="227" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#initComponents#0;class#Goods#0" expanded="false" />
+            <marker date="1461017243794" expanded="true" signature="3028:8187" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
+            <marker date="1461017243794" expanded="true" signature="8199:8806" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/yana/kursova/gui/AddNewGood.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="58" column="83" selection-start-line="58" selection-start-column="83" selection-end-line="58" selection-end-column="83" />
+          <folding>
+            <element signature="method#initializeTextFields#0;class#AddNewGood#0" expanded="false" />
+            <element signature="method#initComponents#0;class#AddNewGood#0" expanded="false" />
+            <marker date="1461002418062" expanded="true" signature="3053:7568" placeholder="// JFormDesigner - Component initialization - DO NOT MODIFY" />
+            <marker date="1461002418062" expanded="false" signature="7580:8545" placeholder="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
           </folding>
         </state>
       </provider>
