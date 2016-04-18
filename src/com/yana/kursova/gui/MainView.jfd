@@ -13,11 +13,11 @@
        <class>org.jdesktop.layout.GroupLayout</class>
        <void method="setProperty">
         <string>$horizontalGroup</string>
-        <string>par l {comp toolBar::t::954:x, comp scrollPane::l::954:x}</string>
+        <string>par l {comp toolBar::t::954:x, comp scrollPane::t::954:x}</string>
        </void>
        <void method="setProperty">
         <string>$verticalGroup</string>
-        <string>par l {seq t {comp toolBar:::p::p, space :::p, comp scrollPane::::436:x}}</string>
+        <string>par l {seq t {comp toolBar:::p::p, space :::p, comp scrollPane::::426:x}}</string>
        </void>
       </object>
       <void method="setProperty">
@@ -108,6 +108,20 @@
          <string>borderPainted</string>
          <boolean>false</boolean>
         </void>
+        <void method="setProperty">
+         <string>maximumSize</string>
+         <object class="java.awt.Dimension">
+          <int>1920</int>
+          <int>41</int>
+         </object>
+        </void>
+        <void method="setProperty">
+         <string>preferredSize</string>
+         <object class="java.awt.Dimension">
+          <int>907</int>
+          <int>41</int>
+         </object>
+        </void>
         <void property="name">
          <string>toolBar</string>
         </void>
@@ -145,6 +159,14 @@
           <void property="name">
            <string>buttonAddTB</string>
           </void>
+          <void method="addEvent">
+           <object class="com.jformdesigner.model.FormEvent">
+            <string>java.awt.event.ActionListener</string>
+            <string>actionPerformed</string>
+            <string>buttonAddTBActionPerformed</string>
+            <boolean>true</boolean>
+           </object>
+          </void>
          </object>
         </void>
         <void method="add">
@@ -181,6 +203,14 @@
           <void property="name">
            <string>buttonDeleteTB</string>
           </void>
+          <void method="addEvent">
+           <object class="com.jformdesigner.model.FormEvent">
+            <string>java.awt.event.ActionListener</string>
+            <string>actionPerformed</string>
+            <string>buttonDeleteTBActionPerformed</string>
+            <boolean>true</boolean>
+           </object>
+          </void>
          </object>
         </void>
         <void method="add">
@@ -216,6 +246,14 @@
           </void>
           <void property="name">
            <string>buttonEditTB</string>
+          </void>
+          <void method="addEvent">
+           <object class="com.jformdesigner.model.FormEvent">
+            <string>java.awt.event.ActionListener</string>
+            <string>actionPerformed</string>
+            <string>buttonEditTBActionPerformed</string>
+            <boolean>true</boolean>
+           </object>
           </void>
          </object>
         </void>
@@ -259,6 +297,66 @@
           </void>
           <void property="name">
            <string>buttonPrintTB</string>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="com.jformdesigner.model.FormComponent">
+          <string>javax.swing.JLabel</string>
+          <void method="setProperty">
+           <string>text</string>
+           <string>Пошук по назві: </string>
+          </void>
+          <void method="setProperty">
+           <string>preferredSize</string>
+           <object class="java.awt.Dimension">
+            <int>630</int>
+            <int>30</int>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>maximumSize</string>
+           <object class="java.awt.Dimension">
+            <int>1920</int>
+            <int>30</int>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>horizontalAlignment</string>
+           <int>4</int>
+          </void>
+          <void property="name">
+           <string>label1</string>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="com.jformdesigner.model.FormComponent">
+          <string>javax.swing.JTextField</string>
+          <void method="setProperty">
+           <string>maximumSize</string>
+           <object class="java.awt.Dimension">
+            <int>125</int>
+            <int>30</int>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>preferredSize</string>
+           <object class="java.awt.Dimension">
+            <int>125</int>
+            <int>30</int>
+           </object>
+          </void>
+          <void property="name">
+           <string>textFieldSearch</string>
+          </void>
+          <void method="addEvent">
+           <object class="com.jformdesigner.model.FormEvent">
+            <string>java.awt.event.KeyListener</string>
+            <string>keyPressed</string>
+            <string>textFieldSearchKeyPressed</string>
+            <boolean>true</boolean>
+           </object>
           </void>
          </object>
         </void>

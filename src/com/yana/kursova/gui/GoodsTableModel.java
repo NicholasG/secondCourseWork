@@ -6,57 +6,103 @@ import com.yana.kursova.domain.Good;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 /**
  * Created by NicholasG on 10.04.2016.
  */
 public class GoodsTableModel extends AbstractTableModel {
 
+    private static final GoodDAO goodDAO = new GoodDAO();
+
     private final String[] columns = { "ID", "Name", "Type",
             "Manufacturer", "Article", "Price",
             "Scale", "Amount", "Color", "Specifications" };
 
     private List<Good> goods;
+    private List<Good> oldGoods = new ArrayList<>();
+
+    private static String oldSearch = "";
 
     public GoodsTableModel( List<Good> goods ) {
         this.goods = goods;
+        this.oldGoods.addAll( goods );
+        getSorted();
+    }
+
+    private void getSorted() {
+        //region Ініціалізація сортування
+        //Сортування по назві
+        Comparator<Good> goodComparator = ( o1, o2 ) -> o1.getName().compareToIgnoreCase( o2.getName() );
+        this.goods.sort( goodComparator );
+        this.oldGoods.sort( goodComparator );
+        //endregion
     }
 
     public static GoodsTableModel getGoodsTableModel( int shopId ) {
         try {
-            GoodDAO dao = new GoodDAO();
-            java.util.List<Good> goods = dao.findAllGoodsByShopId( shopId );
+            java.util.List<Good> goods = goodDAO.findAllGoodsByShopId( shopId );
             return new GoodsTableModel( goods );
         } catch ( Exception e ) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog( null, "Не вдалося ініціалізувати таблицю товарів: " + e.getMessage() );
         }
         return new GoodsTableModel( new ArrayList<>() );
     }
 
     public static GoodsTableModel getGoodsTableModel() {
         try {
-            GoodDAO dao = new GoodDAO();
-            final java.util.List<Good> goods = dao.findAll();
+            final java.util.List<Good> goods = goodDAO.findAll();
             return new GoodsTableModel( goods );
         } catch ( Exception e ) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog( null, "Couldn't initialize table of goods: " + e.getMessage() );
+            JOptionPane.showMessageDialog( null, "Не вдалося ініціалізувати таблицю товарів: " + e.getMessage() );
         }
         return new GoodsTableModel( new ArrayList<>() );
     }
 
+    public void search( String name ) {
+        //region Пошук товару по назві
+        //Якщо користувач видалив символ з поля пошуку, то пошук здійснюється по всіх елементах повторно
+        goods = oldSearch.length() > name.length() ? oldGoods : goods;
+        //Якщо @name порожнє, то поточним списком товарів стає старий список всіх товарів
+        if ( name.equals( "" ) ) goods = oldGoods;
+        else goods = goods.stream()
+                .filter( g -> g.getName().toLowerCase()
+                        .startsWith( name.toLowerCase() ) )
+                .collect( Collectors.toList() );
+        oldSearch = name;
+        //endregion
+        fireTableStructureChanged();
+    }
+
     public void addGood( Good good ) {
+        //region Додавання нового елемента
         goods.add( good );
-        fireTableRowsInserted( 0, goods.size() );
+        oldGoods.add( good );
+        //endregion
+        getSorted();
+        fireTableDataChanged();
     }
 
     public void updateGood( Good good ) {
-        goods.add( good );
-        fireTableRowsUpdated( 0, goods.size() );
+        //region Заміна старого елемента на новий
+        UnaryOperator<Good> goodUnaryOperator = g -> {
+            if ( g.getId() == good.getId() ) return good;
+            else return g;
+        };
+        goods.replaceAll( goodUnaryOperator );
+        oldGoods.replaceAll( goodUnaryOperator );
+        //endregion
+        getSorted();
+        fireTableDataChanged();
     }
 
     public void removeRow( int rowIndex ) {
+        oldGoods.remove( goods.get( rowIndex ) );
         goods.remove( rowIndex );
         fireTableRowsDeleted( rowIndex, rowIndex );
     }
@@ -67,6 +113,10 @@ public class GoodsTableModel extends AbstractTableModel {
 
     public void refreshTable() {
         fireTableRowsUpdated( 0, goods.size() );
+    }
+
+    public List<Good> getGoods() {
+        return goods;
     }
 
     @Override

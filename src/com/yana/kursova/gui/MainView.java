@@ -9,11 +9,15 @@ import com.yana.kursova.dao.ShopDAO;
 import com.yana.kursova.domain.Shop;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainView extends JFrame {
+
+    private ShopsTableModel tableModel = getShopsTableModel();
 
     public MainView() {
         initComponents();
@@ -22,8 +26,40 @@ public class MainView extends JFrame {
 
     private void tableShopMouseClicked(MouseEvent e) {
         if ( e.getClickCount() == 2 ) {
-            Goods goods = new Goods( this, tableShop.getSelectedRow() + 1 );
+            int selectedRow = tableShop.getSelectedRow();
+            int shopId = tableModel.getShopFromRow( selectedRow ).getId();
+            Goods goods = new Goods( this, shopId );
             goods.setVisible( true );
+        }
+    }
+
+    private void textFieldSearchKeyPressed(KeyEvent e) {
+        tableModel.search( textFieldSearch.getText() );
+    }
+
+    private void buttonAddTBActionPerformed(ActionEvent e) {
+        AddNewShop newShop = new AddNewShop( this );
+        newShop.setVisible( true );
+    }
+
+    private void buttonEditTBActionPerformed(ActionEvent e) {
+        int selectedRow = tableShop.getSelectedRow();
+        Shop shop = tableModel.getShopFromRow( selectedRow );
+        AddNewShop newShop = new AddNewShop(this, shop );
+        newShop.setVisible( true );
+    }
+
+    private void buttonDeleteTBActionPerformed(ActionEvent e) {
+        int confirmDialog = JOptionPane.showConfirmDialog( this,
+                "Ви дійсно бажаєте видалити могазин?", "Увага!",
+                JOptionPane.YES_NO_OPTION );
+        if ( confirmDialog == JOptionPane.YES_OPTION ) try {
+            int selectedRow = tableShop.getSelectedRow();
+            Shop shop = tableModel.getShopFromRow( selectedRow );
+            new ShopDAO().deleteShop( shop.getId() );
+            tableModel.removeRow( selectedRow );
+        } catch ( SQLException e1 ) {
+            e1.printStackTrace();
         }
     }
 
@@ -34,12 +70,14 @@ public class MainView extends JFrame {
         menu1 = new JMenu();
         menuItem1 = new JMenuItem();
         scrollPane = new JScrollPane();
-        tableShop = new JTable(getShopsTableModel());
+        tableShop = new JTable(tableModel);
         toolBar = new JToolBar();
         buttonAddTB = new JButton();
         buttonDeleteTB = new JButton();
         buttonEditTB = new JButton();
         buttonPrintTB = new JButton();
+        label1 = new JLabel();
+        textFieldSearch = new JTextField();
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -84,6 +122,8 @@ public class MainView extends JFrame {
             toolBar.setBackground(Color.white);
             toolBar.setAlignmentX(0.0F);
             toolBar.setBorderPainted(false);
+            toolBar.setMaximumSize(new Dimension(1920, 41));
+            toolBar.setPreferredSize(new Dimension(907, 41));
 
             //---- buttonAddTB ----
             buttonAddTB.setToolTipText("Add a new shop");
@@ -91,6 +131,7 @@ public class MainView extends JFrame {
             buttonAddTB.setAlignmentY(0.0F);
             buttonAddTB.setBorderPainted(false);
             buttonAddTB.setBackground(Color.white);
+            buttonAddTB.addActionListener(e -> buttonAddTBActionPerformed(e));
             toolBar.add(buttonAddTB);
 
             //---- buttonDeleteTB ----
@@ -99,6 +140,7 @@ public class MainView extends JFrame {
             buttonDeleteTB.setBackground(Color.white);
             buttonDeleteTB.setAlignmentY(0.0F);
             buttonDeleteTB.setToolTipText("Delete a shop");
+            buttonDeleteTB.addActionListener(e -> buttonDeleteTBActionPerformed(e));
             toolBar.add(buttonDeleteTB);
 
             //---- buttonEditTB ----
@@ -107,6 +149,7 @@ public class MainView extends JFrame {
             buttonEditTB.setBorderPainted(false);
             buttonEditTB.setBackground(Color.white);
             buttonEditTB.setToolTipText("Edit a shop");
+            buttonEditTB.addActionListener(e -> buttonEditTBActionPerformed(e));
             toolBar.add(buttonEditTB);
 
             //---- buttonPrintTB ----
@@ -117,6 +160,24 @@ public class MainView extends JFrame {
             buttonPrintTB.setBackground(Color.white);
             buttonPrintTB.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/print.png")));
             toolBar.add(buttonPrintTB);
+
+            //---- label1 ----
+            label1.setText("\u041f\u043e\u0448\u0443\u043a \u043f\u043e \u043d\u0430\u0437\u0432\u0456: ");
+            label1.setPreferredSize(new Dimension(630, 30));
+            label1.setMaximumSize(new Dimension(1920, 30));
+            label1.setHorizontalAlignment(SwingConstants.RIGHT);
+            toolBar.add(label1);
+
+            //---- textFieldSearch ----
+            textFieldSearch.setMaximumSize(new Dimension(125, 30));
+            textFieldSearch.setPreferredSize(new Dimension(125, 30));
+            textFieldSearch.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    textFieldSearchKeyPressed(e);
+                }
+            });
+            toolBar.add(textFieldSearch);
         }
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
@@ -124,14 +185,14 @@ public class MainView extends JFrame {
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addComponent(toolBar, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
-                .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
+                .addComponent(scrollPane, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
                     .addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
+                    .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -145,7 +206,7 @@ public class MainView extends JFrame {
             return new ShopsTableModel( shops );
         } catch ( Exception e ) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog( this, "Couldn't initialize table of shops: " + e.getMessage() );
+            JOptionPane.showMessageDialog( this, "Не вдалося ініціалізувати таблицю магазинів: " + e.getMessage() );
         }
         return new ShopsTableModel( new ArrayList<>() );
     }
@@ -156,11 +217,13 @@ public class MainView extends JFrame {
     private JMenu menu1;
     private JMenuItem menuItem1;
     private JScrollPane scrollPane;
-    private JTable tableShop;
+    public static JTable tableShop;
     private JToolBar toolBar;
     private JButton buttonAddTB;
     private JButton buttonDeleteTB;
     private JButton buttonEditTB;
     private JButton buttonPrintTB;
+    private JLabel label1;
+    private JTextField textFieldSearch;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

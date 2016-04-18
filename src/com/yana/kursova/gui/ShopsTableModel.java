@@ -3,7 +3,11 @@ package com.yana.kursova.gui;
 import com.yana.kursova.domain.Shop;
 
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 /**
  * Created by NicholasG on 10.04.2016.
@@ -14,23 +18,74 @@ public class ShopsTableModel extends AbstractTableModel {
             "Phone", "Chief", "Site", "Schedule" };
 
     private List<Shop> shops;
+    private List<Shop> oldShops = new ArrayList<>();
+
+    private static String oldSearch = "";
 
     public ShopsTableModel( List<Shop> shops ) {
         this.shops = shops;
+        this.oldShops.addAll( shops );
+        getSorted();
+
+    }
+
+    private void getSorted() {
+        //region Ініціалізація сортування
+        //Сортування по назві
+        Comparator<Shop> shopComparator = ( o1, o2 ) -> o1.getName().compareToIgnoreCase( o2.getName() );
+        this.shops.sort( shopComparator );
+        this.oldShops.sort( shopComparator );
+        //endregion
+    }
+
+    public void search( String name ) {
+        //region Пошук товару по назві
+        //Якщо користувач видалив символ з поля пошуку, то пошук здійснюється по всіх елементах повторно
+        this.shops = oldSearch.length() > name.length() ? oldShops : this.shops;
+
+        //Якщо @name порожнє, то поточним списком магазинів стає старий список всіх магазинів
+        if ( name.equals( "" ) ) this.shops = oldShops;
+        else this.shops = this.shops.stream()
+                .filter( s -> s.getName().toLowerCase()
+                        .startsWith( name.toLowerCase() ) )
+                .collect( Collectors.toList() );
+        oldSearch = name;
+        //endregion
+        fireTableStructureChanged();
     }
 
     public void addShop( Shop shop ) {
+        //region Додавання нового елемента
         shops.add( shop );
-        fireTableRowsInserted( 0, shops.size() );
+        oldShops.add( shop );
+        //endregion
+        getSorted();
+        fireTableDataChanged();
+    }
+
+    public void updateShop( Shop shop ) {
+        //region Заміна старого елемента на новий
+        UnaryOperator<Shop> shopUnaryOperator = s -> {
+            if ( s.getId() == shop.getId() ) return shop;
+            else return s;
+        };
+        shops.replaceAll( shopUnaryOperator );
+        oldShops.replaceAll( shopUnaryOperator );
+        //endregion
+        getSorted();
+        fireTableDataChanged();
+    }
+
+    public void removeRow( int rowIndex ) {
+        //region Видалення елемента
+        oldShops.remove( shops.get( rowIndex ) );
+        shops.remove( rowIndex );
+        //endregion
+        fireTableRowsDeleted( rowIndex, rowIndex );
     }
 
     public Shop getShopFromRow( int rowIndex ) {
         return shops.get( rowIndex );
-    }
-
-    public void removeRow( int rowIndex ) {
-        shops.remove( rowIndex );
-        fireTableRowsDeleted( rowIndex, rowIndex );
     }
 
     public void refreshTable() {
@@ -49,6 +104,7 @@ public class ShopsTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt( int rowIndex, int columnIndex ) {
+        //region Витягування значення з комірки
         Shop s = shops.get( rowIndex );
         switch ( columnIndex ) {
             case 0:
@@ -68,6 +124,7 @@ public class ShopsTableModel extends AbstractTableModel {
             default:
                 return null;
         }
+        //endregion
     }
 
     @Override

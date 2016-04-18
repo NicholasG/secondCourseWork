@@ -56,7 +56,8 @@ public class Goods extends JDialog {
     }
 
     private void openEditForm() throws SQLException {
-        int id = Integer.parseInt( String.valueOf( table.getValueAt( table.getSelectedRow(), 0 ) ) );
+        int selectedRow = table.getSelectedRow();
+        int id = tableModel.getGoodFromRow( selectedRow ).getId();
         Good good = new GoodDAO().findById( id );
         AddNewGood newGood = new AddNewGood( this, good );
         newGood.setVisible( true );
@@ -66,14 +67,18 @@ public class Goods extends JDialog {
         int confirmDialog = JOptionPane.showConfirmDialog( this,
                 "Ви дійсно бажаєте видалити товар?", "Увага!",
                 JOptionPane.YES_NO_OPTION );
-        if ( confirmDialog == 0 ) try {
+        if ( confirmDialog == JOptionPane.YES_OPTION ) try {
             int selectedRow = table.getSelectedRow();
-            int goodId = Integer.parseInt( String.valueOf( table.getValueAt( selectedRow, 0 ) ) );
+            int goodId = tableModel.getGoodFromRow( selectedRow ).getId();
             new GoodDAO().deleteGoodFromShop( shopId, goodId );
             tableModel.removeRow( selectedRow );
         } catch ( SQLException e1 ) {
             e1.printStackTrace();
         }
+    }
+
+    private void textFieldSearchKeyPressed(KeyEvent e) {
+        tableModel.search( textFieldSearch.getText() );
     }
 
     private void initComponents() {
@@ -89,10 +94,14 @@ public class Goods extends JDialog {
         buttonDelete = new JButton();
         buttonEdit = new JButton();
         buttonPrint = new JButton();
+        label1 = new JLabel();
+        textFieldSearch = new JTextField();
 
         //======== this ========
         setBackground(Color.white);
         setTitle("GOODS");
+        setResizable(false);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
 
@@ -125,6 +134,7 @@ public class Goods extends JDialog {
         {
             toolBar1.setFloatable(false);
             toolBar1.setBackground(Color.white);
+            toolBar1.setBorderPainted(false);
 
             //---- buttonAdd ----
             buttonAdd.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/add.png")));
@@ -156,6 +166,24 @@ public class Goods extends JDialog {
             buttonPrint.setBorderPainted(false);
             buttonPrint.setBackground(Color.white);
             toolBar1.add(buttonPrint);
+
+            //---- label1 ----
+            label1.setText("\u041f\u043e\u0448\u0443\u043a \u043f\u043e \u043d\u0430\u0437\u0432\u0456: ");
+            label1.setHorizontalAlignment(SwingConstants.RIGHT);
+            label1.setPreferredSize(new Dimension(630, 30));
+            label1.setMaximumSize(new Dimension(630, 30));
+            toolBar1.add(label1);
+
+            //---- textFieldSearch ----
+            textFieldSearch.setMaximumSize(new Dimension(125, 30));
+            textFieldSearch.setPreferredSize(new Dimension(125, 30));
+            textFieldSearch.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    textFieldSearchKeyPressed(e);
+                }
+            });
+            toolBar1.add(textFieldSearch);
         }
         contentPane.add(toolBar1);
         toolBar1.setBounds(0, 0, 950, toolBar1.getPreferredSize().height);
@@ -184,11 +212,13 @@ public class Goods extends JDialog {
     private JMenu menu1;
     private JMenuItem menuItem2;
     private JScrollPane scrollPane1;
-    public JTable table;
+    public static JTable table;
     private JToolBar toolBar1;
     private JButton buttonAdd;
     private JButton buttonDelete;
     private JButton buttonEdit;
     private JButton buttonPrint;
+    private JLabel label1;
+    private JTextField textFieldSearch;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

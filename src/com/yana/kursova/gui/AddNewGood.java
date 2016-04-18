@@ -56,7 +56,8 @@ public class AddNewGood extends JDialog {
             getGood( this.good );
             try {
                 dao.updateGood( good );
-                Goods.table.setModel( GoodsTableModel.getGoodsTableModel( Goods.shopId ) );
+                GoodsTableModel model = ( GoodsTableModel ) Goods.table.getModel();
+                model.updateGood( good );
                 this.dispose();
             } catch ( SQLException e1 ) {
                 e1.printStackTrace();
@@ -68,7 +69,8 @@ public class AddNewGood extends JDialog {
                 int newId = dao.insertGood( good );
                 good.setId( newId );
                 dao.insertGoodIntoShop( good.getId(), Goods.shopId );
-                Goods.table.setModel( GoodsTableModel.getGoodsTableModel( Goods.shopId ) );
+                GoodsTableModel model = ( GoodsTableModel ) Goods.table.getModel();
+                model.addGood( good );
                 this.dispose();
             } catch ( SQLException e1 ) {
                 e1.printStackTrace();

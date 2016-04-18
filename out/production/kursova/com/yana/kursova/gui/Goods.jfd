@@ -7,6 +7,8 @@ new FormModel {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
 			"title": "GOODS"
+			"resizable": false
+			"defaultCloseOperation": 2
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
 				add( new FormComponent( "javax.swing.JTable" ) {
@@ -16,7 +18,6 @@ new FormModel {
 						"JavaCodeGenerator.variableName": "table"
 						"JavaCodeGenerator.variableModifiers": 1
 					}
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "tableMouseClicked", true ) )
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 0
@@ -28,6 +29,7 @@ new FormModel {
 				name: "toolBar1"
 				"floatable": false
 				"background": new java.awt.Color( 255, 255, 255, 255 )
+				"borderPainted": false
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "buttonAdd"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/yana/kursova/gui/icons/add.png" )
@@ -58,6 +60,22 @@ new FormModel {
 					"toolTipText": "Print table"
 					"borderPainted": false
 					"background": new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Пошук по назві: "
+					"horizontalAlignment": 4
+					"preferredSize": new java.awt.Dimension( 630, 30 )
+					"maximumSize": new java.awt.Dimension( 630, 30 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textFieldSearch"
+					"maximumSize": new java.awt.Dimension( 125, 30 )
+					"preferredSize": new java.awt.Dimension( 125, 30 )
+					auxiliary() {
+						"JavaCodeGenerator.variableName": "textFieldSearch"
+					}
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textFieldSearchKeyPressed", true ) )
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 0
