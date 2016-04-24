@@ -10,10 +10,12 @@ import static com.yana.kursova.dao.queries.GoodQueries.*;
 
 public class GoodDAO {
 
+    // Додає запис в таблицю Товари
     public int insertGood( Good good ) throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement(
                     getInsertQuery(), Statement.RETURN_GENERATED_KEYS );
+            //region Вставка параметрів в запит
             statement.setString( 1, good.getName() );
             statement.setString( 2, good.getType() );
             statement.setString( 3, good.getManufacturer() );
@@ -23,16 +25,21 @@ public class GoodDAO {
             statement.setInt( 7, good.getAmount() );
             statement.setString( 8, good.getColor() );
             statement.setString( 9, good.getSpecifications() );
+            //endregion
 
+            // Виконання запиту
             statement.executeUpdate();
+            // Повернення нового ідентифікатора (id)
             return DataAccessUtil.getNewRowKey( statement );
         }
     }
 
+    // Оновлює запис в таблиці Товари
     public void updateGood( Good good ) throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement( getUpdateQuery() );
 
+            //region Вставка параметрів в запит
             statement.setString( 1, good.getName() );
             statement.setString( 2, good.getType() );
             statement.setString( 3, good.getManufacturer() );
@@ -43,21 +50,26 @@ public class GoodDAO {
             statement.setString( 8, good.getColor() );
             statement.setString( 9, good.getSpecifications() );
             statement.setInt( 10, good.getId() );
+            //endregion
 
+            // Виконання запиту
             statement.executeUpdate();
         }
 
     }
 
+    // Видаляє запис з таблиці Товари
     public void deleteGood( int id ) throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement( getDeleteQuery() );
 
+            // Вказуємо id товару, який буде видалено
             statement.setInt( 1, id );
             statement.executeUpdate();
         }
     }
 
+    // Отримує всі записи з таблиці Товари
     public List<Good> findAll() throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement( getSelectAllQuery() );
@@ -67,9 +79,9 @@ public class GoodDAO {
             while ( rs.next() ) result.add( getGoodFromRow( rs ) );
             return result;
         }
-
     }
 
+    // Пошук по id
     public Good findById( int id ) throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement( getSelectOneByIdQuery() );
@@ -78,10 +90,10 @@ public class GoodDAO {
             ResultSet rs = statement.executeQuery();
             if ( rs.next() ) return getGoodFromRow( rs );
         }
-
         return null;
     }
 
+    // Пошук по назві
     public List<Good> findAllByName( String name ) throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement( getSelectAllByNameQuery() );
@@ -94,6 +106,7 @@ public class GoodDAO {
         }
     }
 
+    // Додає товар в магазин
     public int insertGoodIntoShop( int goodId, int shopId ) throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement(
@@ -108,6 +121,7 @@ public class GoodDAO {
 
     }
 
+    // Пошук всіх товарів, які є в магазині
     public List<Good> findAllGoodsByShopId( int shopId ) throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             //region Пошук всіх індексів товарів, які знаходяться в магазині з індексом @shopId
@@ -133,6 +147,7 @@ public class GoodDAO {
         }
     }
 
+    // Вадаляє товар з магазину
     public void deleteGoodFromShop( int shopId, int goodId ) throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement( getDeleteGoodFromShopQuery() );

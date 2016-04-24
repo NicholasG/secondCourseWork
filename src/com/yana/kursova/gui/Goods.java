@@ -79,10 +79,6 @@ public class Goods extends JDialog {
         }
     }
 
-    private void textFieldSearchKeyPressed(KeyEvent e) {
-        tableModel.search( textFieldSearch.getText() );
-    }
-
     private void buttonPrintActionPerformed(ActionEvent e) {
         MessageFormat headerFormat = new MessageFormat( "Сторінка {0}" );
         MessageFormat footerFormat = new MessageFormat( "- {0} -" );
@@ -93,12 +89,20 @@ public class Goods extends JDialog {
         }
     }
 
+    private void textFieldSearchKeyTyped(KeyEvent e) {
+        if ( e.getKeyChar() != KeyEvent.VK_BACK_SPACE ) {
+            String name = textFieldSearch.getText() + e.getKeyChar();
+            tableModel.search( name );
+        }
+        else {
+            String name = textFieldSearch.getText();
+            tableModel.search( name );
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Nicholas G
-        menuBar1 = new JMenuBar();
-        menu1 = new JMenu();
-        menuItem2 = new JMenuItem();
         scrollPane1 = new JScrollPane();
         table = new JTable();
         toolBar1 = new JToolBar();
@@ -111,32 +115,18 @@ public class Goods extends JDialog {
 
         //======== this ========
         setBackground(Color.white);
-        setTitle("GOODS");
+        setTitle("\u0422\u041e\u0412\u0410\u0420\u0418");
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
-
-        //======== menuBar1 ========
-        {
-
-            //======== menu1 ========
-            {
-                menu1.setText("text");
-
-                //---- menuItem2 ----
-                menuItem2.setText("text");
-                menu1.add(menuItem2);
-            }
-            menuBar1.add(menu1);
-        }
-        setJMenuBar(menuBar1);
 
         //======== scrollPane1 ========
         {
 
             //---- table ----
             table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            table.setFont(new Font("Times New Roman", Font.PLAIN, 12));
             scrollPane1.setViewportView(table);
         }
         contentPane.add(scrollPane1);
@@ -150,7 +140,7 @@ public class Goods extends JDialog {
 
             //---- buttonAdd ----
             buttonAdd.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/add.png")));
-            buttonAdd.setToolTipText("Add a new good");
+            buttonAdd.setToolTipText("\u0414\u043e\u0434\u0430\u0442\u0438");
             buttonAdd.setBorderPainted(false);
             buttonAdd.setBackground(Color.white);
             buttonAdd.addActionListener(e -> buttonAddActionPerformed(e));
@@ -158,7 +148,7 @@ public class Goods extends JDialog {
 
             //---- buttonDelete ----
             buttonDelete.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/delete.png")));
-            buttonDelete.setToolTipText("Remove");
+            buttonDelete.setToolTipText("\u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438");
             buttonDelete.setBorderPainted(false);
             buttonDelete.setBackground(Color.white);
             buttonDelete.addActionListener(e -> buttonDeleteActionPerformed(e));
@@ -166,7 +156,7 @@ public class Goods extends JDialog {
 
             //---- buttonEdit ----
             buttonEdit.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/edit.png")));
-            buttonEdit.setToolTipText("Edit");
+            buttonEdit.setToolTipText("\u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438");
             buttonEdit.setBorderPainted(false);
             buttonEdit.setBackground(Color.white);
             buttonEdit.addActionListener(e -> buttonEditActionPerformed(e));
@@ -174,7 +164,7 @@ public class Goods extends JDialog {
 
             //---- buttonPrint ----
             buttonPrint.setIcon(new ImageIcon(getClass().getResource("/com/yana/kursova/gui/icons/print.png")));
-            buttonPrint.setToolTipText("Print table");
+            buttonPrint.setToolTipText("\u0414\u0440\u0443\u043a");
             buttonPrint.setBorderPainted(false);
             buttonPrint.setBackground(Color.white);
             buttonPrint.addActionListener(e -> buttonPrintActionPerformed(e));
@@ -192,8 +182,8 @@ public class Goods extends JDialog {
             textFieldSearch.setPreferredSize(new Dimension(125, 30));
             textFieldSearch.addKeyListener(new KeyAdapter() {
                 @Override
-                public void keyPressed(KeyEvent e) {
-                    textFieldSearchKeyPressed(e);
+                public void keyTyped(KeyEvent e) {
+                    textFieldSearchKeyTyped(e);
                 }
             });
             toolBar1.add(textFieldSearch);
@@ -221,9 +211,6 @@ public class Goods extends JDialog {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Nicholas G
-    private JMenuBar menuBar1;
-    private JMenu menu1;
-    private JMenuItem menuItem2;
     private JScrollPane scrollPane1;
     public static JTable table;
     private JToolBar toolBar1;

@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
  */
 public class ShopsTableModel extends AbstractTableModel {
 
-    private final String[] columns = { "ID", "Name", "Address",
-            "Phone", "Chief", "Site", "Schedule" };
+    private final String[] columns = { "ID", "Назва", "Адреса",
+            "Телефон", "Директор", "Вебсайт", "Розклад" };
 
     private List<Shop> shops;
     private List<Shop> oldShops = new ArrayList<>();

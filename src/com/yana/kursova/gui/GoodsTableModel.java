@@ -18,9 +18,9 @@ public class GoodsTableModel extends AbstractTableModel {
 
     private static final GoodDAO goodDAO = new GoodDAO();
 
-    private final String[] columns = { "ID", "Name", "Type",
-            "Manufacturer", "Article", "Price",
-            "Scale", "Amount", "Color", "Specifications" };
+    private final String[] columns = { "ID", "Назва", "Тип",
+            "Виробник", "Артикул", "Ціна",
+            "Од. вимір.", "Кількість", "Колір", "Опис" };
 
     private List<Good> goods;
     private List<Good> oldGoods = new ArrayList<>();
