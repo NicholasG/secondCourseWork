@@ -6,14 +6,36 @@ package com.yana.kursova.gui;
 
 import com.yana.kursova.dao.GoodDAO;
 import com.yana.kursova.domain.Good;
+import com.yana.kursova.gui.table.model.GoodsTableModel;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.SQLException;
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 public class AddNewGood extends JDialog {
+
+    private JTextField textFieldName;
+    private JTextField textFieldType;
+    private JTextField textFieldArticle;
+    private JTextField textFieldPrice;
+    private JTextField textFieldScale;
+    private JTextField textFieldAmount;
+    private JTextField textFieldColor;
+    private JTextField textFieldManufacturer;
+    private JScrollPane scrollPane;
+    private JTextArea textAreaSpec;
+    private JLabel labelName;
+    private JLabel labelType;
+    private JLabel labelArticle;
+    private JLabel labelPrice;
+    private JLabel labelScale;
+    private JLabel labelAmount;
+    private JLabel labelColor;
+    private JLabel labelManufacturer;
+    private JButton buttonSave;
+    private JButton buttonCancel;
+    private JLabel labelSpec;
 
     private Good good = null;
     private GoodDAO dao = new GoodDAO();
@@ -28,7 +50,7 @@ public class AddNewGood extends JDialog {
         initComponents();
     }
 
-    public AddNewGood( Dialog owner, Good good ) {
+    public AddNewGood( Frame owner, Good good ) {
         super( owner );
         this.good = good;
         initComponents();
@@ -91,8 +113,6 @@ public class AddNewGood extends JDialog {
     }
 
     private void initComponents() {
-        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Nicholas G
         textFieldName = new JTextField();
         textFieldType = new JTextField();
         textFieldArticle = new JTextField();
@@ -116,118 +136,93 @@ public class AddNewGood extends JDialog {
         labelSpec = new JLabel();
 
         //======== this ========
-        setTitle("ADD/EDIT GOOD");
+        setTitle( "ADD/EDIT GOOD" );
         Container contentPane = getContentPane();
-        contentPane.setLayout(null);
-        contentPane.add(textFieldName);
-        textFieldName.setBounds(70, 10, 135, textFieldName.getPreferredSize().height);
-        contentPane.add(textFieldType);
-        textFieldType.setBounds(70, 35, 135, textFieldType.getPreferredSize().height);
-        contentPane.add(textFieldArticle);
-        textFieldArticle.setBounds(70, 60, 135, textFieldArticle.getPreferredSize().height);
-        contentPane.add(textFieldPrice);
-        textFieldPrice.setBounds(280, 10, 135, textFieldPrice.getPreferredSize().height);
-        contentPane.add(textFieldScale);
-        textFieldScale.setBounds(280, 35, 135, textFieldScale.getPreferredSize().height);
-        contentPane.add(textFieldAmount);
-        textFieldAmount.setBounds(280, 60, 135, textFieldAmount.getPreferredSize().height);
-        contentPane.add(textFieldColor);
-        textFieldColor.setBounds(515, 10, 135, textFieldColor.getPreferredSize().height);
-        contentPane.add(textFieldManufacturer);
-        textFieldManufacturer.setBounds(515, 35, 135, textFieldManufacturer.getPreferredSize().height);
+        contentPane.setLayout( null );
+        contentPane.add( textFieldName );
+        textFieldName.setBounds( 70, 10, 135, textFieldName.getPreferredSize().height );
+        contentPane.add( textFieldType );
+        textFieldType.setBounds( 70, 35, 135, textFieldType.getPreferredSize().height );
+        contentPane.add( textFieldArticle );
+        textFieldArticle.setBounds( 70, 60, 135, textFieldArticle.getPreferredSize().height );
+        contentPane.add( textFieldPrice );
+        textFieldPrice.setBounds( 280, 10, 135, textFieldPrice.getPreferredSize().height );
+        contentPane.add( textFieldScale );
+        textFieldScale.setBounds( 280, 35, 135, textFieldScale.getPreferredSize().height );
+        contentPane.add( textFieldAmount );
+        textFieldAmount.setBounds( 280, 60, 135, textFieldAmount.getPreferredSize().height );
+        contentPane.add( textFieldColor );
+        textFieldColor.setBounds( 515, 10, 135, textFieldColor.getPreferredSize().height );
+        contentPane.add( textFieldManufacturer );
+        textFieldManufacturer.setBounds( 515, 35, 135, textFieldManufacturer.getPreferredSize().height );
 
         //======== scrollPane ========
         {
-            scrollPane.setViewportView(textAreaSpec);
+            scrollPane.setViewportView( textAreaSpec );
         }
-        contentPane.add(scrollPane);
-        scrollPane.setBounds(10, 120, 640, 110);
+        contentPane.add( scrollPane );
+        scrollPane.setBounds( 10, 120, 640, 110 );
 
         //---- labelName ----
-        labelName.setText("Name:");
-        contentPane.add(labelName);
-        labelName.setBounds(10, 10, 55, 20);
+        labelName.setText( "Name:" );
+        contentPane.add( labelName );
+        labelName.setBounds( 10, 10, 55, 20 );
 
         //---- labelType ----
-        labelType.setText("Type:");
-        contentPane.add(labelType);
-        labelType.setBounds(10, 35, 55, 20);
+        labelType.setText( "Type:" );
+        contentPane.add( labelType );
+        labelType.setBounds( 10, 35, 55, 20 );
 
         //---- labelArticle ----
-        labelArticle.setText("Article:");
-        contentPane.add(labelArticle);
-        labelArticle.setBounds(10, 60, 55, 20);
+        labelArticle.setText( "Article:" );
+        contentPane.add( labelArticle );
+        labelArticle.setBounds( 10, 60, 55, 20 );
 
         //---- labelPrice ----
-        labelPrice.setText("Price:");
-        contentPane.add(labelPrice);
-        labelPrice.setBounds(220, 10, 55, 20);
+        labelPrice.setText( "Price:" );
+        contentPane.add( labelPrice );
+        labelPrice.setBounds( 220, 10, 55, 20 );
 
         //---- labelScale ----
-        labelScale.setText("Scale:");
-        contentPane.add(labelScale);
-        labelScale.setBounds(220, 35, 55, 20);
+        labelScale.setText( "Scale:" );
+        contentPane.add( labelScale );
+        labelScale.setBounds( 220, 35, 55, 20 );
 
         //---- labelAmount ----
-        labelAmount.setText("Amount:");
-        contentPane.add(labelAmount);
-        labelAmount.setBounds(220, 60, 55, 20);
+        labelAmount.setText( "Amount:" );
+        contentPane.add( labelAmount );
+        labelAmount.setBounds( 220, 60, 55, 20 );
 
         //---- labelColor ----
-        labelColor.setText("Color:");
-        contentPane.add(labelColor);
-        labelColor.setBounds(430, 10, 55, 20);
+        labelColor.setText( "Color:" );
+        contentPane.add( labelColor );
+        labelColor.setBounds( 430, 10, 55, 20 );
 
         //---- labelManufacturer ----
-        labelManufacturer.setText("Manufacturer:");
-        contentPane.add(labelManufacturer);
-        labelManufacturer.setBounds(430, 35, 80, 20);
+        labelManufacturer.setText( "Manufacturer:" );
+        contentPane.add( labelManufacturer );
+        labelManufacturer.setBounds( 430, 35, 80, 20 );
 
         //---- buttonSave ----
-        buttonSave.setText("Save");
-        buttonSave.addActionListener(e -> buttonSaveActionPerformed(e));
-        contentPane.add(buttonSave);
-        buttonSave.setBounds(10, 245, 100, 33);
+        buttonSave.setText( "Save" );
+        buttonSave.addActionListener( this::buttonSaveActionPerformed );
+        contentPane.add( buttonSave );
+        buttonSave.setBounds( 10, 245, 100, 33 );
 
         //---- buttonCancel ----
-        buttonCancel.setText("Cancel");
-        buttonCancel.addActionListener(e -> buttonCancelActionPerformed(e));
-        contentPane.add(buttonCancel);
-        buttonCancel.setBounds(550, 245, 100, 33);
+        buttonCancel.setText( "Cancel" );
+        buttonCancel.addActionListener( this::buttonCancelActionPerformed );
+        contentPane.add( buttonCancel );
+        buttonCancel.setBounds( 550, 245, 100, 33 );
 
         //---- labelSpec ----
-        labelSpec.setText("Specifications:");
-        contentPane.add(labelSpec);
-        labelSpec.setBounds(10, 95, 95, 19);
+        labelSpec.setText( "Specifications:" );
+        contentPane.add( labelSpec );
+        labelSpec.setBounds( 10, 95, 95, 19 );
 
-        contentPane.setPreferredSize(new Dimension(660, 325));
+        contentPane.setPreferredSize( new Dimension( 660, 325 ) );
         pack();
-        setLocationRelativeTo(getOwner());
-        // JFormDesigner - End of component initialization  //GEN-END:initComponents
+        setLocationRelativeTo( getOwner() );
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Nicholas G
-    private JTextField textFieldName;
-    private JTextField textFieldType;
-    private JTextField textFieldArticle;
-    private JTextField textFieldPrice;
-    private JTextField textFieldScale;
-    private JTextField textFieldAmount;
-    private JTextField textFieldColor;
-    private JTextField textFieldManufacturer;
-    private JScrollPane scrollPane;
-    private JTextArea textAreaSpec;
-    private JLabel labelName;
-    private JLabel labelType;
-    private JLabel labelArticle;
-    private JLabel labelPrice;
-    private JLabel labelScale;
-    private JLabel labelAmount;
-    private JLabel labelColor;
-    private JLabel labelManufacturer;
-    private JButton buttonSave;
-    private JButton buttonCancel;
-    private JLabel labelSpec;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

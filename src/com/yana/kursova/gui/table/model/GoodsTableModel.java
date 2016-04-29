@@ -1,4 +1,4 @@
-package com.yana.kursova.gui;
+package com.yana.kursova.gui.table.model;
 
 import com.yana.kursova.dao.GoodDAO;
 import com.yana.kursova.domain.Good;

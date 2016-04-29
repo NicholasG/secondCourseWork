@@ -1,4 +1,4 @@
-package com.yana.kursova.gui;
+package com.yana.kursova.gui.table.model;
 
 import com.yana.kursova.domain.Shop;
 
@@ -90,6 +90,10 @@ public class ShopsTableModel extends AbstractTableModel {
 
     public void refreshTable() {
         fireTableRowsUpdated( 0, shops.size() );
+    }
+
+    public List<Shop> getShops() {
+        return shops;
     }
 
     @Override
