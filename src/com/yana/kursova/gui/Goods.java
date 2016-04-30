@@ -6,6 +6,7 @@ package com.yana.kursova.gui;
 
 import com.yana.kursova.dao.GoodDAO;
 import com.yana.kursova.domain.Good;
+import com.yana.kursova.excel.ExcelFileFilter;
 import com.yana.kursova.excel.ExcelUtils;
 import com.yana.kursova.gui.popup.MyPopupMenu;
 import com.yana.kursova.gui.table.model.GoodsTableModel;
@@ -139,11 +140,20 @@ public class Goods extends JFrame {
 
     private void buttonExcelExportActionPerformed( ActionEvent e ) {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.showSaveDialog( this );
-        File selectedFile = fileChooser.getSelectedFile();
-        if ( selectedFile != null )
-            ExcelUtils.getInstance()
-                    .exportGoods( selectedFile, tableModel.getGoods() );
+        ExcelFileFilter filter = new ExcelFileFilter();
+        fileChooser.addChoosableFileFilter( filter );
+        if ( fileChooser.showSaveDialog( this ) == JFileChooser.APPROVE_OPTION ) {
+            File selectedFile = fileChooser.getSelectedFile();
+            if ( !filter.accept( selectedFile ) ) {
+                String s = selectedFile.getPath() + ".xlsx";
+                selectedFile = new File( s );
+                ExcelUtils.getInstance()
+                        .exportGoods( selectedFile, tableModel.getGoods() );
+            } else {
+                ExcelUtils.getInstance()
+                        .exportGoods( selectedFile, tableModel.getGoods() );
+            }
+        }
     }
 
     private void initComponents() {

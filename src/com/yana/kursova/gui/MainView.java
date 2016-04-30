@@ -6,6 +6,7 @@ package com.yana.kursova.gui;
 
 import com.yana.kursova.dao.ShopDAO;
 import com.yana.kursova.domain.Shop;
+import com.yana.kursova.excel.ExcelFileFilter;
 import com.yana.kursova.excel.ExcelUtils;
 import com.yana.kursova.gui.popup.MyPopupMenu;
 import com.yana.kursova.gui.table.model.ShopsTableModel;
@@ -92,11 +93,20 @@ public class MainView extends JFrame {
 
     private void buttonExcelExportActionPerformed( ActionEvent e ) {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.showSaveDialog( this );
-        File selectedFile = fileChooser.getSelectedFile();
-        if ( selectedFile != null )
-            ExcelUtils.getInstance()
-                    .exportShops( selectedFile, tableModel.getShops() );
+        ExcelFileFilter filter = new ExcelFileFilter();
+        fileChooser.addChoosableFileFilter( filter );
+        if ( fileChooser.showSaveDialog( this ) == JFileChooser.APPROVE_OPTION ) {
+            File selectedFile = fileChooser.getSelectedFile();
+            if ( !filter.accept( selectedFile ) ) {
+                String s = selectedFile.getPath() + ".xlsx";
+                selectedFile = new File( s );
+                ExcelUtils.getInstance()
+                        .exportShops( selectedFile, tableModel.getShops() );
+            } else {
+                ExcelUtils.getInstance()
+                        .exportShops( selectedFile, tableModel.getShops() );
+            }
+        }
     }
 
     private void textFieldSearchKeyTyped( KeyEvent e ) {
