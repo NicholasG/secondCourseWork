@@ -11,6 +11,8 @@ import com.yana.kursova.gui.table.model.ShopsTableModel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 
 /**
@@ -119,67 +121,99 @@ public class AddNewShop extends JDialog {
         buttonCancel = new JButton();
 
         //======== this ========
-        setTitle( "ADD/EDIT SHOP" );
+        setTitle("ADD/EDIT SHOP");
         Container contentPane = getContentPane();
-        contentPane.setLayout( null );
-        contentPane.add( textFieldName );
-        textFieldName.setBounds( 85, 10, 135, textFieldName.getPreferredSize().height );
-        contentPane.add( textFieldAddress );
-        textFieldAddress.setBounds( 85, 35, 135, 24 );
-        contentPane.add( textFieldPhone );
-        textFieldPhone.setBounds( 85, 60, 135, 24 );
-        contentPane.add( textFieldChief );
-        textFieldChief.setBounds( 345, 10, 135, 24 );
-        contentPane.add( textFieldSite );
-        textFieldSite.setBounds( 345, 35, 135, 24 );
-        contentPane.add( textFieldSchedule );
-        textFieldSchedule.setBounds( 345, 60, 135, 24 );
+        contentPane.setLayout(null);
+        contentPane.add(textFieldName);
+        textFieldName.setBounds(85, 10, 135, textFieldName.getPreferredSize().height);
+        contentPane.add(textFieldAddress);
+        textFieldAddress.setBounds(85, 35, 135, 24);
+        contentPane.add(textFieldPhone);
+        textFieldPhone.setBounds(85, 60, 135, 24);
+        contentPane.add(textFieldChief);
+        textFieldChief.setBounds(345, 10, 135, 24);
+        contentPane.add(textFieldSite);
+        textFieldSite.setBounds(345, 35, 135, 24);
+        contentPane.add(textFieldSchedule);
+        textFieldSchedule.setBounds(345, 60, 135, 24);
 
         //---- label1 ----
-        label1.setText( "\u041d\u0430\u0437\u0432\u0430:" );
-        contentPane.add( label1 );
-        label1.setBounds( 15, 10, 65, 25 );
+        label1.setText("\u041d\u0430\u0437\u0432\u0430:");
+        contentPane.add(label1);
+        label1.setBounds(15, 10, 65, 25);
 
         //---- label2 ----
-        label2.setText( "\u0410\u0434\u0440\u0435\u0441\u0430:" );
-        contentPane.add( label2 );
-        label2.setBounds( 15, 35, 65, 25 );
+        label2.setText("\u0410\u0434\u0440\u0435\u0441\u0430:");
+        contentPane.add(label2);
+        label2.setBounds(15, 35, 65, 25);
 
         //---- label3 ----
-        label3.setText( "\u0422\u0435\u043b\u0435\u0444\u043e\u043d:" );
-        contentPane.add( label3 );
-        label3.setBounds( 15, 60, 65, 25 );
+        label3.setText("\u0422\u0435\u043b\u0435\u0444\u043e\u043d:");
+        contentPane.add(label3);
+        label3.setBounds(15, 60, 65, 25);
 
         //---- label4 ----
-        label4.setText( "\u0414\u0438\u0440\u0435\u043a\u0442\u043e\u0440:" );
-        contentPane.add( label4 );
-        label4.setBounds( 275, 10, 65, 25 );
+        label4.setText("\u0414\u0438\u0440\u0435\u043a\u0442\u043e\u0440:");
+        contentPane.add(label4);
+        label4.setBounds(275, 10, 65, 25);
 
         //---- label5 ----
-        label5.setText( "\u0412\u0435\u0431\u0441\u0430\u0439\u0442:" );
-        contentPane.add( label5 );
-        label5.setBounds( 275, 35, 65, 25 );
+        label5.setText("\u0412\u0435\u0431\u0441\u0430\u0439\u0442:");
+        contentPane.add(label5);
+        label5.setBounds(275, 35, 65, 25);
 
         //---- label6 ----
-        label6.setText( "\u0420\u043e\u0437\u043a\u043b\u0430\u0434:" );
-        contentPane.add( label6 );
-        label6.setBounds( 275, 60, 65, 25 );
+        label6.setText("\u0420\u043e\u0437\u043a\u043b\u0430\u0434:");
+        contentPane.add(label6);
+        label6.setBounds(275, 60, 65, 25);
 
         //---- buttonSave ----
-        buttonSave.setText( "\u0417\u0431\u0435\u0440\u0435\u0433\u0442\u0438" );
-        buttonSave.addActionListener( this::buttonSaveActionPerformed );
-        contentPane.add( buttonSave );
-        buttonSave.setBounds( 10, 110, 100, 35 );
+        buttonSave.setText("\u0417\u0431\u0435\u0440\u0435\u0433\u0442\u0438");
+        buttonSave.addActionListener(this::buttonSaveActionPerformed);
+        contentPane.add(buttonSave);
+        buttonSave.setBounds(10, 110, 100, 35);
 
         //---- buttonCancel ----
-        buttonCancel.setText( "\u0412\u0456\u0434\u043c\u0456\u043d\u0438\u0442\u0438" );
-        buttonCancel.addActionListener( this::buttonCancelActionPerformed );
-        contentPane.add( buttonCancel );
-        buttonCancel.setBounds( 385, 110, 100, 35 );
+        buttonCancel.setText("\u0412\u0456\u0434\u043c\u0456\u043d\u0438\u0442\u0438");
+        buttonCancel.addActionListener(this::buttonCancelActionPerformed);
+        contentPane.add(buttonCancel);
+        buttonCancel.setBounds(385, 110, 100, 35);
 
-        contentPane.setPreferredSize( new Dimension( 500, 170 ) );
+        //---- textFieldPhone ----
+        textFieldPhone.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                textFieldPhoneKeyTyped(e);
+            }
+        });
+
+        //---- textFieldChief ----
+        textFieldChief.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                textFieldChiefKeyTyped(e);
+            }
+        });
+
+        contentPane.setPreferredSize(new Dimension(500, 170));
         pack();
-        setLocationRelativeTo( getOwner() );
+        setLocationRelativeTo(getOwner());
+    }
+
+    private void textFieldChiefKeyTyped(KeyEvent e) {
+        if (!Character.isAlphabetic(e.getKeyChar())
+                && e.getKeyChar() != KeyEvent.VK_SPACE
+                && e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            e.consume();
+            JOptionPane.showMessageDialog(null, "Допустимо вводити тільки букви!");
+        }
+    }
+
+    private void textFieldPhoneKeyTyped(KeyEvent e) {
+        if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            e.consume();
+            JOptionPane.showMessageDialog(null, "Допустимо вводити тільки цифри!");
+        }
     }
 
 }

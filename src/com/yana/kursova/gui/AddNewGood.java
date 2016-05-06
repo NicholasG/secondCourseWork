@@ -11,6 +11,8 @@ import com.yana.kursova.gui.table.model.GoodsTableModel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 
 public class AddNewGood extends JDialog {
@@ -160,69 +162,101 @@ public class AddNewGood extends JDialog {
         {
             scrollPane.setViewportView( textAreaSpec );
         }
-        contentPane.add( scrollPane );
-        scrollPane.setBounds( 10, 120, 640, 110 );
+        contentPane.add(scrollPane);
+        scrollPane.setBounds(10, 120, 640, 110);
 
         //---- labelName ----
-        labelName.setText( "Name:" );
-        contentPane.add( labelName );
-        labelName.setBounds( 10, 10, 55, 20 );
+        labelName.setText("Name:");
+        contentPane.add(labelName);
+        labelName.setBounds(10, 10, 55, 20);
 
         //---- labelType ----
-        labelType.setText( "Type:" );
-        contentPane.add( labelType );
-        labelType.setBounds( 10, 35, 55, 20 );
+        labelType.setText("Type:");
+        contentPane.add(labelType);
+        labelType.setBounds(10, 35, 55, 20);
 
         //---- labelArticle ----
-        labelArticle.setText( "Article:" );
-        contentPane.add( labelArticle );
-        labelArticle.setBounds( 10, 60, 55, 20 );
+        labelArticle.setText("Article:");
+        contentPane.add(labelArticle);
+        labelArticle.setBounds(10, 60, 55, 20);
 
         //---- labelPrice ----
-        labelPrice.setText( "Price:" );
-        contentPane.add( labelPrice );
-        labelPrice.setBounds( 220, 10, 55, 20 );
+        labelPrice.setText("Price:");
+        contentPane.add(labelPrice);
+        labelPrice.setBounds(220, 10, 55, 20);
 
         //---- labelScale ----
-        labelScale.setText( "Scale:" );
-        contentPane.add( labelScale );
-        labelScale.setBounds( 220, 35, 55, 20 );
+        labelScale.setText("Scale:");
+        contentPane.add(labelScale);
+        labelScale.setBounds(220, 35, 55, 20);
 
         //---- labelAmount ----
-        labelAmount.setText( "Amount:" );
-        contentPane.add( labelAmount );
-        labelAmount.setBounds( 220, 60, 55, 20 );
+        labelAmount.setText("Amount:");
+        contentPane.add(labelAmount);
+        labelAmount.setBounds(220, 60, 55, 20);
 
         //---- labelColor ----
-        labelColor.setText( "Color:" );
-        contentPane.add( labelColor );
-        labelColor.setBounds( 430, 10, 55, 20 );
+        labelColor.setText("Color:");
+        contentPane.add(labelColor);
+        labelColor.setBounds(430, 10, 55, 20);
 
         //---- labelManufacturer ----
-        labelManufacturer.setText( "Manufacturer:" );
-        contentPane.add( labelManufacturer );
-        labelManufacturer.setBounds( 430, 35, 80, 20 );
+        labelManufacturer.setText("Manufacturer:");
+        contentPane.add(labelManufacturer);
+        labelManufacturer.setBounds(430, 35, 80, 20);
 
         //---- buttonSave ----
-        buttonSave.setText( "Save" );
-        buttonSave.addActionListener( this::buttonSaveActionPerformed );
-        contentPane.add( buttonSave );
-        buttonSave.setBounds( 10, 245, 100, 33 );
+        buttonSave.setText("Save");
+        buttonSave.addActionListener(this::buttonSaveActionPerformed);
+        contentPane.add(buttonSave);
+        buttonSave.setBounds(10, 245, 100, 33);
 
         //---- buttonCancel ----
-        buttonCancel.setText( "Cancel" );
-        buttonCancel.addActionListener( this::buttonCancelActionPerformed );
-        contentPane.add( buttonCancel );
-        buttonCancel.setBounds( 550, 245, 100, 33 );
+        buttonCancel.setText("Cancel");
+        buttonCancel.addActionListener(this::buttonCancelActionPerformed);
+        contentPane.add(buttonCancel);
+        buttonCancel.setBounds(550, 245, 100, 33);
 
         //---- labelSpec ----
-        labelSpec.setText( "Specifications:" );
-        contentPane.add( labelSpec );
-        labelSpec.setBounds( 10, 95, 95, 19 );
+        labelSpec.setText("Specifications:");
+        contentPane.add(labelSpec);
+        labelSpec.setBounds(10, 95, 95, 19);
+        
+        //---- textFieldPrice ----
+        textFieldPrice.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                textFieldPriceKeyTyped(e);
+            }
+        });
+
+        //---- textFieldAmount ----
+        textFieldAmount.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                textFieldAmountKeyTyped(e);
+            }
+        });
 
         contentPane.setPreferredSize( new Dimension( 660, 325 ) );
         pack();
         setLocationRelativeTo( getOwner() );
+    }
+
+    private void textFieldAmountKeyTyped(KeyEvent e) {
+        if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            e.consume();
+            JOptionPane.showMessageDialog(null, "Допустимо вводити тільки цифри!");
+        }
+    }
+
+    private void textFieldPriceKeyTyped(KeyEvent e) {
+        if (!Character.isDigit(e.getKeyChar())
+                && e.getKeyChar() != '.'
+                && e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            e.consume();
+            JOptionPane.showMessageDialog(null, "Допустимо вводити тільки цифри!");
+        }
     }
 
 }
